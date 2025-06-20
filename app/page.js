@@ -45,9 +45,11 @@ export default function Home() {
                 <p className="text-xl  text-gray-600 font-bold">₹{service.price }</p>
                 <button
                   onClick={() => addToCart(service)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                  disabled={cartItems.some(item => item._id === service._id)}
+                  className={cartItems.some(item => item._id === service._id)?"bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-green-600"  : "bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600" }
+
                 >
-                  Add to Cart
+                 {cartItems.some(item => item._id === service._id) ? 'Added' : 'Add to Cart'}
                 </button>
               </div>
             </div>
