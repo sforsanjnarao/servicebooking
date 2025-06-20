@@ -28,7 +28,6 @@ export default function RootLayout({ children }) {
         <CartProvider>
           {children}
         </CartProvider>
-        {/* This script is essential for Razorpay Checkout */}
         <Script src="https://checkout.razorpay.com/v1/checkout.js" />
 
       </body>

@@ -2,6 +2,7 @@
 
 import { useCart } from '@/context/CartContext';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 import Link from 'next/link';
 
 
@@ -13,20 +14,12 @@ export default function CartPage() {
     if (totalAmount <= 0) return;
 
     // 1. Create Order on your server
-    const res = await fetch('/api/create-order', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ amount: totalAmount }),
-    });
+    const response = await axios.post('/api/create-order', {
+        amount: totalAmount,
+      });
 
-    if (!res.ok) {
-      alert('Failed to create order.');
-      return;
-    }
+      const order = response.data;
 
-    const order = await res.json();
 
     // 2. Open Razorpay Checkout
     const options = {
@@ -42,9 +35,9 @@ export default function CartPage() {
         router.push(`/payment-success?paymentId=${response.razorpay_payment_id}`);
       },
       prefill: {
-        name: 'Test User',
-        email: 'test.user@example.com',
-        contact: '9999999999',
+        name: 'sanjana',
+        email: 'sanjana.2004.pk@gmail.com',
+        contact: '6260670788',
       },
       theme: {
         color: '#3399cc',

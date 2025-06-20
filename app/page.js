@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useCart } from '@/context/CartContext';
 import Link from 'next/link';
 
@@ -12,9 +13,8 @@ export default function Home() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch('/api/services');
-        const data = await res.json();
-        setServices(data);
+        const res = await  axios.get('/api/services')
+        setServices(res.data);
       } catch (error) {
         console.error('Failed to fetch services:', error);
       } finally {
