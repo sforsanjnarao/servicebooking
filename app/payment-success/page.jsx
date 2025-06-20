@@ -4,8 +4,9 @@ import { Suspense } from 'react';
 import PaymentStatus from './PaymentStatus'; // Import the new client component
 
 function Loading() {
-  return <div className="text-center"><h2>Loading payment status...</h2></div>;
+    return <div className="text-center"><h2>Loading payment status...</h2></div>;
 }
+export const dynamic = 'force-dynamic'; 
 
 export default function PaymentSuccessPage() {
   return (
